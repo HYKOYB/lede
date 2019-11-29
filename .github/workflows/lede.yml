@@ -12,7 +12,7 @@ name: LEDE-HY
 on:
   push:
     branches: 
-      - master
+      - HYKOYB-patch-1
   # schedule:
   #   - cron: 0 20 * * *
   # release:
