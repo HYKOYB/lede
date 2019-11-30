@@ -12,9 +12,9 @@ name: 云编译
 on:
   push:
     branches: 
-      - master
-  schedule:
-     - cron: 0 16 * * *
+      - HYKOYB-patch-1
+  #schedule:
+     #- cron: 0 16 * * *
   release:
      types: [published]
 
@@ -106,7 +106,6 @@ jobs:
 
           # 编译x64固件:
           cat >> .config <<EOF
-		#
           # Automatically generated file; DO NOT EDIT.
           # OpenWrt Configuration
           #
@@ -5858,8 +5857,7 @@ jobs:
           #
           # font-utils
           #
-          # CONFIG_PACKAGE_fontconfig is not set
-		  
+          # CONFIG_PACKAGE_fontconfig is not set	  
           EOF
 
           sed -i 's/^[ \t]*//g' ./.config
