@@ -10,13 +10,15 @@
 name: 云编译
 
 on:
-  push:
-    branches: 
-      - master
+  #push:
+    #branches: 
+     #- master
   #schedule:
      #- cron: 0 16 * * *
-  release:
-     types: [published]
+  #release:
+     #types: [published]
+  watch:
+    types: [started]
 
 jobs:
   build:
