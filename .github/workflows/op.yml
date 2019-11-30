@@ -24,9 +24,9 @@ jobs:
 
     steps:
       - name: 校验本地文件
-        uses: actions/checkout@master
+        uses: actions/checkout@HYKOYB-patch-1
         with:
-          ref: master
+          ref: HYKOYB-patch-1
 
       - name: 安装编译环境
         env:
@@ -75,7 +75,7 @@ jobs:
       - name: 同步最新的源码
         run: |
           git remote add openwrt https://github.com/coolsnowwolf/lede.git
-          git pull openwrt master
+          git pull openwrt HYKOYB-patch-1
           git remote -v
       - name: 构建自定义文件结构
         run: |
@@ -94,8 +94,8 @@ jobs:
       - name: 构建编译扩展环境
         run: |
           git fetch openwrt
-          git merge openwrt/master
-          git pull --rebase origin master
+          git merge openwrt/HYKOYB-patch-1
+          git pull --rebase origin HYKOYB-patch-1
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
@@ -5857,7 +5857,7 @@ jobs:
           #
           # font-utils
           #
-          # CONFIG_PACKAGE_fontconfig is not set	  
+          # CONFIG_PACKAGE_fontconfig is not set 
           EOF
 
           sed -i 's/^[ \t]*//g' ./.config
@@ -5875,7 +5875,7 @@ jobs:
           make -j$(nproc) V=s
 
       - name : 编译完成上传固件
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@HYKOYB-patch-1
         with:
           name: OpenWrt firmware
           path: bin/targets
