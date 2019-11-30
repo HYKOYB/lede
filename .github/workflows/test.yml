@@ -1,0 +1,44 @@
+name: 云编译
+
+on:
+  push:
+    branches: 
+      - master
+  #schedule:
+    # - cron: 0 16 * * *
+  release:
+     types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 同步最新的源码
+        run: |
+          git config --global user.email "492359224@qq.com"
+          git config --global user.name "HYKOYB"
+		  git remote add openwrt https://github.com/coolsnowwolf/lede.git
+          git pull openwrt master
+          git remote -v
+      - name: 构建自定义文件结构
+        run: |
+          cd package
+          mkdir openwrt-packages
+          cd openwrt-packages
+          git clone https://github.com/openwrt-develop/luci-theme-atmaterial.git
+          git clone https://github.com/KFERMercer/luci-app-serverchan
+          git clone https://github.com/rosywrt/luci-theme-rosy
+          git clone https://github.com/apollo-ng/luci-theme-darkmatter
+          git clone https://github.com/rosywrt/luci-theme-purple
+          git clone https://github.com/Ameykyl/luci-app-koolproxyR
+          git clone https://github.com/giaulo/luci-app-filebrowser.git
+          git clone https://github.com/honwen/luci-app-aliddns.git
+          
+      - name: 构建编译扩展环境
+        run: |
+          git fetch openwrt
+          git merge openwrt/master
+          git pull --rebase origin master
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
