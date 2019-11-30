@@ -7,7 +7,7 @@
 # <https://github.com/KFERMercer/OpenWrt-CI>
 # Narizgnaw：非常感谢KFERMercer大佬提供的OpenWrt-CI。
 
-name: 云编译
+name: 晕
 
 on:
   push:
@@ -74,11 +74,12 @@ jobs:
 
       - name: 同步最新的源码
         run: |
+          git config --global user.email "492359224@qq.com"
+          git config --global user.name "HYKOYB"
           git remote add openwrt https://github.com/coolsnowwolf/lede.git
           git pull openwrt master
           git remote -v
-          git config --global user.email "492359224@qq.com"
-          git config --global user.name "HYKOYB"
+
       - name: 构建自定义文件结构
         run: |
           cd package
