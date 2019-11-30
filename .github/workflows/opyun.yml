@@ -10,15 +10,13 @@
 name: 云编译
 
 on:
-  #push:
-    #branches: 
-     #- master
+  push:
+    branches: 
+      - master
   #schedule:
-     #- cron: 0 16 * * *
-  #release:
-     #types: [published]
-  watch:
-    types: [started]
+    # - cron: 0 16 * * *
+  release:
+     types: [published]
 
 jobs:
   build:
@@ -76,8 +74,8 @@ jobs:
 
       - name: 同步最新的源码
         run: |
-          git remote add lede https://github.com/coolsnowwolf/lede.git
-          git pull lede master
+          git remote add openwrt https://github.com/coolsnowwolf/lede.git
+          git pull openwrt master
           git remote -v
       - name: 构建自定义文件结构
         run: |
